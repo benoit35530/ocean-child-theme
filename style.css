@@ -1,0 +1,19 @@
+/*
+Theme Name: OceanWP Child Theme des Paniers
+Theme URI: https://oceanwp.org/
+Description: OceanWP WordPress theme pour les Paniers d'EDEN
+Author: OceanWP
+Author URI: https://oceanwp.org/
+Template: oceanwp
+Version: 1.0
+*/
+
+/* Parent stylesheet should be loaded from functions.php not using @import */
+
+@font-face {
+    font-family: 'Chilet';
+    src: url('fonts/chilet-webfont.woff2') format('woff2'),
+         url('fonts/chilet-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
