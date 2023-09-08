@@ -82,51 +82,6 @@ function afficher_produits_avec_etiquette($atts) {
 }
 add_shortcode('afficher_produits_etiquette', 'afficher_produits_avec_etiquette');
 
-// Gestions des breadcrumbs des pages paniers
-function paniers_trail_items($items) {
-    if (str_starts_with($_SERVER['REQUEST_URI'], '/paniers/index.php')) {
-        if ($_GET["action"] == "ajoutercde") {
-            return [$items[0], "Paniers", "Nouvelle commande"];
-        } else if ($_GET["action"] == "voircde") {
-            return [$items[0], "Paniers", "Commandes"];
-        } else if ($_GET["action"] == "planning") {
-            return [$items[0], "Paniers", "Permanences"];
-        }
-        else {
-            return [$items[0], "Paniers"];
-        }
-    }
-    else if (str_starts_with($_SERVER['REQUEST_URI'], '/paniers/nouveau.php')) {
-        return [$items[0], "Bon de commande"];
-    } else {
-        return $items;
-    }
-}
-
-function paniers_page_title($title) {
-    if (str_starts_with($_SERVER['REQUEST_URI'], '/paniers/index.php')) {
-        if ($_GET["action"] == "ajoutercde") {
-            return "Nouvelle commande";
-        } else if ($_GET["action"] == "voircde") {
-            return "Commandes";
-        } else if ($_GET["action"] == "planning") {
-            return "Permanences";
-        }
-        else {
-            return "Paniers";
-        }
-    }
-    else if (str_starts_with($_SERVER['REQUEST_URI'], '/paniers/nouveau.php')) {
-        return "Bon de commande";
-    }
-    else {
-        return $title;
-    }
-}
-
-// Configuration de woocommerce pour l'affichage des produits.
-add_filter('ocean_title', 'paniers_page_title');
-add_filter('oceanwp_breadcrumb_trail_items',  'paniers_trail_items');
 
 add_filter('woocommerce_register_post_type_product','paniers_remove_shop_default_description');
 function paniers_remove_shop_default_description($args){
@@ -146,7 +101,6 @@ add_theme_support( 'block-templates' );
 add_filter( 'logout_redirect', function( $url, $query, $user ) {
 	return home_url();
 }, 10, 3 );
-
 
 add_filter( 'login_redirect', function ( $redirect_to, $request, $user ) {
 	if ( isset( $user->roles ) && is_array( $user->roles ) ) {
